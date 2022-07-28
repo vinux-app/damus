@@ -48,19 +48,13 @@ struct SetupView: View {
                     NavigationLink(destination: LoginView(), tag: .login, selection: $state ) {
                         EmptyView()
                     }
-                    
-                    Image("logo-nobg")
-                        .resizable()
-                        .frame(width: 128.0, height: 128.0, alignment: .center)
-                        .padding([.top], 20.0)
-                    Text("Damus")
-                        .font(Font.custom("Nunito", size: 50.0))
-                        .kerning(-2)
-                        .foregroundColor(.white)
-                    
+                                        
                     CarouselView()
+                        .scaledToFill()
+                        .frame(width: nil, height: nil, alignment: .leading)
+
                     
-                    Spacer()
+                    //Spacer()
                     
                     DamusWhiteButton("Create Account") {
                         self.state = .create_account
