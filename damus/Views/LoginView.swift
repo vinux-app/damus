@@ -31,6 +31,8 @@ struct LoginView: View {
     @State var key: String = ""
     @State var is_pubkey: Bool = false
     @State var error: String? = nil
+    @State var info = AppInfo()// else { nil }
+    @State var appInfo: String = "AppVersion: (info.version) \nBuild: (info.build) \nGit hash: (info.gitCommitSHA)"
     
     func get_error(parsed_key: ParsedKey?) -> String? {
         if self.error != nil {
@@ -56,7 +58,9 @@ struct LoginView: View {
                 Text("Enter your account key to login:")
                     .foregroundColor(.white)
                     .padding()
-                
+                Text(verbatim:info!.version)
+                Text(verbatim:info!.build)
+                Text(verbatim:info!.gitCommitSHA)
                 KeyInput("nsec1...", key: $key)
                 
                 let parsed = parse_key(key)
