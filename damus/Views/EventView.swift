@@ -130,7 +130,8 @@ struct EventView: View {
                 }
 
                 NoteContentView(privkey: damus.keypair.privkey, event: event, profiles: damus.profiles, content: content)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: UIScreen.main.bounds.width*0.80, alignment: .topLeading)
+                    //.frame(minWidth: UIScreen.main.bounds.width*0.8, idealWidth: UIScreen.main.bounds.width*0.85, maxWidth: UIScreen.main.bounds.width, minHeight: 0.0, idealHeight: UIScreen.main.bounds.height*0.15, maxHeight: UIScreen.main.bounds.height, alignment: .topLeading)
                     .textSelection(.enabled)
 
                 if has_action_bar {
