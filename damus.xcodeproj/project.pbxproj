@@ -456,6 +456,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4CE6DF0727F7A08200C66700 /* Build configuration list for PBXNativeTarget "damus" */;
 			buildPhases = (
+				4BDBFF1728A1B04B00DDA935 /* Generate AppInfo.swift */,
 				4CE6DEDF27F7A08100C66700 /* Sources */,
 				4CE6DEE027F7A08100C66700 /* Frameworks */,
 				4CE6DEE127F7A08100C66700 /* Resources */,
@@ -581,6 +582,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4BDBFF1728A1B04B00DDA935 /* Generate AppInfo.swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate AppInfo.swift";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#/bin/sh\n\nversion=$(git rev-parse --verify HEAD | cut -c 1-7)\n\ncommitDate=$(git log -n 1 HEAD --pretty=format:\"%h - %cd\" | cut -c 12-)\n\nfileContent=\"// DO NOT EDIT, // IT IS A MACHINE GENERATED FILE\n\n// AppInfo.swift $commitDate\n\nimport Foundation\nclass AppInfo {\nlet version: String\nlet build: String\nlet gitCommitSHA: String = \\\"$version\\\"\ninit?() {\n    guard let version =\nBundle.main.infoDictionary?[\\\"CFBundleShortVersionString\\\"] as? String, let build = Bundle.main.infoDictionary?[\\\"CFBundleVersion\\\"] as? String else { return nil }\n    self.version = version\n    self.build = build }\n}\"\n\necho \"$fileContent\" > ${SOURCE_ROOT}/${PROJECT_NAME}/AppInfo.swift\n\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4CE6DEDF27F7A08100C66700 /* Sources */ = {
