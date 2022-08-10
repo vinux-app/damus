@@ -35,6 +35,8 @@ struct DamusGradient: View {
 
 struct SetupView: View {
     @State var state: SetupState? = .home
+    @State var info = AppInfo()
+
     
     var body: some View {
         NavigationView {
@@ -48,39 +50,87 @@ struct SetupView: View {
                     NavigationLink(destination: LoginView(), tag: .login, selection: $state ) {
                         EmptyView()
                     }
-                    
-                    Image("logo-nobg")
-                        .resizable()
-                        .frame(width: 128.0, height: 128.0, alignment: .center)
-                        .padding([.top], 20.0)
-                    Text("Damus")
-                        .font(Font.custom("Nunito", size: 50.0))
-                        .kerning(-2)
-                        .foregroundColor(.white)
-                    
-                    CarouselView()
-                    
+                    HStack(alignment: .center){
+                        Image("logo-nobg")
+                            .resizable()
+                            .frame(width: 128.0, height: 128.0, alignment: .center)
+                            .padding([.top], 20.0)
+                        Text("Damus")
+                            .font(Font.custom("Nunito", size: 50.0))
+                            .kerning(-2)
+                            .foregroundColor(.white)
+                        HStack(alignment: .bottom){
+                            Text(String(info!.version)+String(".")+String(info!.build))
+                            //Text(verbatim:info!.gitCommitSHA)
+                        } // End HStack
+                    } // End HStack
+
                     Spacer()
-                    
+                    CarouselView()
+                        HStack(alignment: .bottom){
+                            Text(String(info!.version)+String(".")+String(info!.build))
+                            //Text(verbatim:info!.gitCommitSHA)
+                        } // End HStack
+                    // Spacer()
+
+                        HStack(alignment: .bottom){
+                            Text(String(info!.version)+String(".")+String(info!.build))
+                            //Text(verbatim:info!.gitCommitSHA)
+                        } // End HStack
+
                     DamusWhiteButton("Create Account") {
                         self.state = .create_account
                     }
-                    
+                        HStack(alignment: .bottom){
+                            Text(String(info!.version)+String(".")+String(info!.build))
+                            //Text(verbatim:info!.gitCommitSHA)
+                        } // End HStack
+
                     Button("Login") {
                         self.state = .login
                     }
                     .padding([.top, .bottom], 20)
                     .foregroundColor(.white)
-                    
-                    Spacer()
-                }
-            }
+                    // Spacer()
+
+            } // End ZStack
             .padding(.top, -80)
+                HStack(alignment: .bottom){
+                        Text(String(info!.version)+String(".")+String(info!.build))
+                            //Text(verbatim:info!.gitCommitSHA)
+
+                    } // End HStack
+
+        HStack(alignment: .bottom){
+                    Spacer()
+            VStack(){
+                    // Spacer()
+                        Text(String(info!.version)+String(".")+String(info!.build))
+                            //Text(verbatim:info!.gitCommitSHA)
+                .background(Color.clear)
         }
+
+        } // End HStack
+                .background(Color.clear)
+
+
+        } // End NavigationView
         .navigationBarTitleDisplayMode(.inline)
         .navigationViewStyle(StackNavigationViewStyle())
-    }
-}
+        }
+        // HStack(alignment: .bottom){
+        //             Spacer()
+        //     VStack(){
+        //             // Spacer()
+        //                 Text(String(info!.version)+String(".")+String(info!.build))
+        //                     //Text(verbatim:info!.gitCommitSHA)
+        //         .background(Color.clear)
+        // }
+        //             } // End HStack
+        //         .background(Color.clear)
+
+    } //End some View
+} // End SetupView
 
 func DamusWhiteButton(_ title: String, action: @escaping () -> ()) -> some View {
     return Button(action: action) {
