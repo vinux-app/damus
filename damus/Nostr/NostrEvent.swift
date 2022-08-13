@@ -65,31 +65,31 @@ class NostrEvent: Codable, Identifiable, CustomStringConvertible, Equatable {
     let created_at: Int64
     let kind: Int
     let content: String
-    
+
     var is_textlike: Bool {
         return kind == 1 || kind == 42
     }
-    
+
     var too_big: Bool {
         return self.content.count > 32000
     }
-    
+
     var should_show_event: Bool {
         return !too_big
     }
-    
+
     var is_valid_id: Bool {
         return calculate_event_id(ev: self) == self.id
     }
-    
+
     var is_valid: Bool {
         return validity == .ok
     }
-    
+
     lazy var validity: ValidationResult = {
         return validate_event(ev: self)
     }()
-    
+
     private var _blocks: [Block]? = nil
     func blocks(_ privkey: String?) -> [Block] {
         if let bs = _blocks {
@@ -101,13 +101,9 @@ class NostrEvent: Codable, Identifiable, CustomStringConvertible, Equatable {
     }
 
     lazy var inner_event: NostrEvent? = {
-        // don't try to deserialize an inner event if we know there won't be one
-        if self.known_kind == .boost {
-            return event_from_json(dat: self.content)
-        }
-        return nil
+        return event_from_json(dat: self.content)
     }()
-    
+
     private var _event_refs: [EventRef]? = nil
     func event_refs(_ privkey: String?) -> [EventRef] {
         if let rs = _event_refs {
@@ -128,18 +124,18 @@ class NostrEvent: Codable, Identifiable, CustomStringConvertible, Equatable {
         guard let key = privkey else {
             return nil
         }
-        
+
         guard let our_pubkey = privkey_to_pubkey(privkey: key) else {
             return nil
         }
-        
+
         var pubkey = self.pubkey
         // This is our DM, we need to use the pubkey of the person we're talking to instead
         if our_pubkey == pubkey {
             guard let refkey = self.referenced_pubkeys.first else {
                 return nil
             }
-            
+
             pubkey = refkey.ref_id
         }
 
@@ -153,7 +149,7 @@ class NostrEvent: Codable, Identifiable, CustomStringConvertible, Equatable {
         if known_kind == .dm {
             return decrypted(privkey: privkey) ?? "*failed to decrypt content*"
         }
-        
+
         switch validity {
         case .ok:
             return content
@@ -487,7 +483,7 @@ func make_first_contact_event(keypair: Keypair) -> NostrEvent? {
     let rw_relay_info = RelayInfo(read: true, write: true)
     let relays: [String: RelayInfo] = ["wss://relay.damus.io": rw_relay_info]
     let relay_json = encode_json(relays)!
-    let damus_pubkey = "3efdaebb1d8923ebd99c9e7ace3b4194ab45512e2be79c1b7d68d9243e0d2681"
+    let damus_pubkey = "a34b99f22c790c4e36b2b3c2c35a36db06226e41c692fc82b8b56ac1c540c5bd"
     let tags = [
         ["p", damus_pubkey],
         ["p", keypair.pubkey] // you're a friend of yourself!
@@ -718,7 +714,7 @@ func aes_operation(operation: CCOperation, data: [UInt8], iv: [UInt8], shared_se
 func validate_event(ev: NostrEvent) -> ValidationResult {
     let raw_id = sha256(calculate_event_commitment(ev: ev))
     let id = hex_encode(raw_id)
-    
+
     if id != ev.id {
         return .bad_id
     }
@@ -727,11 +723,11 @@ func validate_event(ev: NostrEvent) -> ValidationResult {
     guard var sig64 = hex_decode(ev.sig)?.bytes else {
         return .bad_sig
     }
-    
+
     guard var ev_pubkey = hex_decode(ev.pubkey)?.bytes else {
         return .bad_sig
     }
-    
+
     let ctx = secp256k1.Context.raw
     var xonly_pubkey = secp256k1_xonly_pubkey.init()
     var ok = secp256k1_xonly_pubkey_parse(ctx, &xonly_pubkey, &ev_pubkey) != 0

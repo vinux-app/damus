@@ -6,7 +6,10 @@
 //
 
 import Foundation
+#if !os(macOS)
 import UIKit
+#endif
+import Combine
 
 
 class Profiles {
