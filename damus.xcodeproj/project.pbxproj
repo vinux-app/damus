@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4BE059CD28ACAF5B00214BAC /* secp256k1 in Frameworks */ = {isa = PBXBuildFile; productRef = 4BE059CC28ACAF5B00214BAC /* secp256k1 */; };
 		4C0A3F8C280F5FCA000448DE /* ChatroomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0A3F8B280F5FCA000448DE /* ChatroomView.swift */; };
 		4C0A3F8F280F640A000448DE /* ThreadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0A3F8E280F640A000448DE /* ThreadModel.swift */; };
 		4C0A3F91280F6528000448DE /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0A3F90280F6528000448DE /* ChatView.swift */; };
@@ -63,7 +64,6 @@
 		4C649844285A952100EAE2B3 /* LocalUserConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C649843285A952100EAE2B3 /* LocalUserConfig.swift */; };
 		4C64987C286D03E000EAE2B3 /* DirectMessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C64987B286D03E000EAE2B3 /* DirectMessagesView.swift */; };
 		4C64987E286D082C00EAE2B3 /* DirectMessagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C64987D286D082C00EAE2B3 /* DirectMessagesModel.swift */; };
-		4C649881286E0EE300EAE2B3 /* secp256k1 in Frameworks */ = {isa = PBXBuildFile; productRef = 4C649880286E0EE300EAE2B3 /* secp256k1 */; };
 		4C75EFA427FA577B0006080F /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C75EFA327FA577B0006080F /* PostView.swift */; };
 		4C75EFA627FF87A20006080F /* Nostr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C75EFA527FF87A20006080F /* Nostr.swift */; };
 		4C75EFAD28049CFB0006080F /* PostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C75EFAC28049CFB0006080F /* PostButton.swift */; };
@@ -235,7 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CE6DF1227F7A2B300C66700 /* Starscream in Frameworks */,
-				4C649881286E0EE300EAE2B3 /* secp256k1 in Frameworks */,
+				4BE059CD28ACAF5B00214BAC /* secp256k1 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,7 +470,7 @@
 			name = damus;
 			packageProductDependencies = (
 				4CE6DF1127F7A2B300C66700 /* Starscream */,
-				4C649880286E0EE300EAE2B3 /* secp256k1 */,
+				4BE059CC28ACAF5B00214BAC /* secp256k1 */,
 			);
 			productName = damus;
 			productReference = 4CE6DEE327F7A08100C66700 /* damus.app */;
@@ -546,7 +546,7 @@
 			mainGroup = 4CE6DEDA27F7A08100C66700;
 			packageReferences = (
 				4CE6DF1027F7A2B300C66700 /* XCRemoteSwiftPackageReference "Starscream" */,
-				4C64987F286E0EE300EAE2B3 /* XCRemoteSwiftPackageReference "secp256k1" */,
+				4BE059CB28ACAF5B00214BAC /* XCRemoteSwiftPackageReference "secp256k1" */,
 			);
 			productRefGroup = 4CE6DEE427F7A08100C66700 /* Products */;
 			projectDirPath = "";
@@ -842,7 +842,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"damus/Preview Content\"";
-				DEVELOPMENT_TEAM = XK7H4JAB3D;
+				DEVELOPMENT_TEAM = M684FYCYG6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = damus/Info.plist;
@@ -861,8 +861,9 @@
 					"$(PROJECT_DIR)",
 				);
 				MARKETING_VERSION = 0.1.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jb55.damus2;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.bitcoincore.damus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -878,7 +879,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"damus/Preview Content\"";
-				DEVELOPMENT_TEAM = XK7H4JAB3D;
+				DEVELOPMENT_TEAM = M684FYCYG6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = damus/Info.plist;
@@ -897,8 +898,9 @@
 					"$(PROJECT_DIR)",
 				);
 				MARKETING_VERSION = 0.1.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jb55.damus2;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.bitcoincore.damus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1023,12 +1025,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4C64987F286E0EE300EAE2B3 /* XCRemoteSwiftPackageReference "secp256k1" */ = {
+		4BE059CB28ACAF5B00214BAC /* XCRemoteSwiftPackageReference "secp256k1" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/jb55/secp256k1.swift";
+			repositoryURL = "https://github.com/vinux-app/secp256k1.swift";
 			requirement = {
 				kind = revision;
-				revision = 40b4b38b3b1c83f7088c76189a742870e0ca06a9;
+				revision = 5fee95663dd5a312b360d3727c7bee55fa8c15c8;
 			};
 		};
 		4CE6DF1027F7A2B300C66700 /* XCRemoteSwiftPackageReference "Starscream" */ = {
@@ -1042,9 +1044,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4C649880286E0EE300EAE2B3 /* secp256k1 */ = {
+		4BE059CC28ACAF5B00214BAC /* secp256k1 */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4C64987F286E0EE300EAE2B3 /* XCRemoteSwiftPackageReference "secp256k1" */;
+			package = 4BE059CB28ACAF5B00214BAC /* XCRemoteSwiftPackageReference "secp256k1" */;
 			productName = secp256k1;
 		};
 		4CE6DF1127F7A2B300C66700 /* Starscream */ = {
