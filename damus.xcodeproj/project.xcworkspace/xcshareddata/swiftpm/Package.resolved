@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher",
       "state" : {
-        "revision" : "415b1d97fb38bda1e5a6b2dde63354720832110b",
-        "version" : "7.6.1"
+        "revision" : "277f1ab2c6664b19b4a412e32b094b201e2d5757",
+        "version" : "7.10.0"
       }
     },
     {
@@ -31,8 +31,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SparrowTek/Vault",
       "state" : {
-        "revision" : "87db56c3c8b6421c65b0745f73e08b0dc56f79d4",
-        "version" : "1.0.3"
+        "revision" : "6771885c9d0ccf9036047b38593c7a3630d9ce43",
+        "version" : "1.1.1"
       }
     }
   ],
